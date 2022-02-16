@@ -27,8 +27,8 @@ from browser import bind
 from browser.widgets.dialog import Dialog
 from browser import ajax
 
-def complete2(request):
-  data = request
+def complete2(response):
+  data = response.text
   print(data)
   document["myoutput"].text = data
 
