@@ -12,12 +12,32 @@
 </head>
 
 <body onload="brython()">
+<div id="notes_taking"></div>
+<textarea id='myinput'></textarea>
+<div id='myoutput'></div>
 
 <script type="text/python">
 from browser import document
 
 document <= "initial bc6 test page"</script>
 
+from browser import document, window
+from browser.html import TABLE, TR, TD, INPUT, BUTTON, PRE, TEXTAREA
+from browser import bind
+from browser.widgets.dialog import Dialog
+from browser import ajax
+
+def complete2(request):
+  data = request
+  print(data)
+  document["myoutput"].text = data
+
+def noteTakingWindow(ev):
+   ajax.get('index.md', oncomplete=complete2)
+
+btn = BUTTON('click me')
+btn.bind('click', noteTakingWindow)
+document['notes_taking'] <= btn
 
 </body>
 
